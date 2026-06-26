@@ -36,7 +36,7 @@ A WPF-based cybersecurity awareness chatbot built in C# with .NET 8.0. The appli
 - Visual Studio 2022
 - .NET 8.0 SDK
 - Newtonsoft.Json NuGet package
-- <img width="300" height="500" alt="image" src="https://github.com/user-attachments/assets/7156dd85-ed1b-461d-8de7-e402c996fd47" />
+- <img width="200" height="300" alt="image" src="https://github.com/user-attachments/assets/7156dd85-ed1b-461d-8de7-e402c996fd47" />
 
 
 ---
