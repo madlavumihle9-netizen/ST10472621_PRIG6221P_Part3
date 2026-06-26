@@ -1,0 +1,297 @@
+﻿<Window x:Class="CybersecurityChatbot.SplashWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Cybersecurity Awareness Bot" 
+        Height="600" 
+        Width="900"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        ResizeMode="NoResize">
+
+    <Window.Resources>
+        <!-- Glow animation for the title -->
+        <Storyboard x:Key="GlowAnimation" RepeatBehavior="Forever" AutoReverse="True">
+            <DoubleAnimation Storyboard.TargetName="TitleGlow" 
+                             Storyboard.TargetProperty="Opacity" 
+                             From="0.3" To="1.0" 
+                             Duration="0:0:2"/>
+        </Storyboard>
+
+        <!-- Fade in for elements -->
+        <Storyboard x:Key="FadeIn">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity" 
+                             From="0" To="1" 
+                             Duration="0:0:1.5"/>
+        </Storyboard>
+
+        <!-- Slide up animation -->
+        <Storyboard x:Key="SlideUp">
+            <ThicknessAnimation Storyboard.TargetProperty="Margin" 
+                              From="0,50,0,0" To="0,0,0,0" 
+                              Duration="0:0:1"/>
+            <DoubleAnimation Storyboard.TargetProperty="Opacity" 
+                             From="0" To="1" 
+                             Duration="0:0:1"/>
+        </Storyboard>
+    </Window.Resources>
+
+    <Grid>
+        <!-- Background with gradient -->
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#0a0e27" Offset="0"/>
+                <GradientStop Color="#0d1235" Offset="0.5"/>
+                <GradientStop Color="#1a1f4b" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <!-- Animated background particles -->
+        <Canvas x:Name="ParticleCanvas" Opacity="0.3">
+            <Ellipse Width="4" Height="4" Fill="#00d4aa" Canvas.Left="100" Canvas.Top="150">
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Loaded">
+                        <BeginStoryboard>
+                            <Storyboard RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetProperty="(Canvas.Top)" 
+                                                 From="150" To="50" 
+                                                 Duration="0:0:4"/>
+                                <DoubleAnimation Storyboard.TargetProperty="Opacity" 
+                                                 From="0" To="1" 
+                                                 Duration="0:0:2"/>
+                                <DoubleAnimation Storyboard.TargetProperty="Opacity" 
+                                                 From="1" To="0" 
+                                                 BeginTime="0:0:2" 
+                                                 Duration="0:0:2"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+            <Ellipse Width="3" Height="3" Fill="#00d4aa" Canvas.Left="300" Canvas.Top="400">
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Loaded">
+                        <BeginStoryboard>
+                            <Storyboard RepeatBehavior="Forever" BeginTime="0:0:1">
+                                <DoubleAnimation Storyboard.TargetProperty="(Canvas.Top)" 
+                                                 From="400" To="300" 
+                                                 Duration="0:0:5"/>
+                                <DoubleAnimation Storyboard.TargetProperty="Opacity" 
+                                                 From="0" To="1" 
+                                                 Duration="0:0:2"/>
+                                <DoubleAnimation Storyboard.TargetProperty="Opacity" 
+                                                 From="1" To="0" 
+                                                 BeginTime="0:0:2" 
+                                                 Duration="0:0:2"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+            <Ellipse Width="5" Height="5" Fill="#00d4aa" Canvas.Left="600" Canvas.Top="200">
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Loaded">
+                        <BeginStoryboard>
+                            <Storyboard RepeatBehavior="Forever" BeginTime="0:0:2">
+                                <DoubleAnimation Storyboard.TargetProperty="(Canvas.Top)" 
+                                                 From="200" To="100" 
+                                                 Duration="0:0:6"/>
+                                <DoubleAnimation Storyboard.TargetProperty="Opacity" 
+                                                 From="0" To="1" 
+                                                 Duration="0:0:2"/>
+                                <DoubleAnimation Storyboard.TargetProperty="Opacity" 
+                                                 From="1" To="0" 
+                                                 BeginTime="0:0:2" 
+                                                 Duration="0:0:2"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+            <Ellipse Width="2" Height="2" Fill="#00d4aa" Canvas.Left="750" Canvas.Top="350">
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Loaded">
+                        <BeginStoryboard>
+                            <Storyboard RepeatBehavior="Forever" BeginTime="0:0:3">
+                                <DoubleAnimation Storyboard.TargetProperty="(Canvas.Top)" 
+                                                 From="350" To="250" 
+                                                 Duration="0:0:4"/>
+                                <DoubleAnimation Storyboard.TargetProperty="Opacity" 
+                                                 From="0" To="1" 
+                                                 Duration="0:0:2"/>
+                                <DoubleAnimation Storyboard.TargetProperty="Opacity" 
+                                                 From="1" To="0" 
+                                                 BeginTime="0:0:2" 
+                                                 Duration="0:0:2"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+            </Ellipse>
+        </Canvas>
+
+        <!-- Main content -->
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="600">
+
+            <!-- Shield Icon -->
+            <TextBlock Text="&#x1F6E1;" 
+                       FontSize="72" 
+                       HorizontalAlignment="Center" 
+                       Margin="0,0,0,20"
+                       Opacity="0.9"/>
+
+            <!-- Animated Title with Glow -->
+            <Grid HorizontalAlignment="Center" Margin="0,0,0,10">
+                <TextBlock Text="CYBERSECURITY AWARENESS BOT" 
+                           FontSize="32" 
+                           FontWeight="Bold" 
+                           Foreground="#00d4aa" 
+                           FontFamily="Segoe UI"
+                           HorizontalAlignment="Center"/>
+                <TextBlock x:Name="TitleGlow" 
+                           Text="CYBERSECURITY AWARENESS BOT" 
+                           FontSize="32" 
+                           FontWeight="Bold" 
+                           Foreground="#00d4aa" 
+                           FontFamily="Segoe UI"
+                           HorizontalAlignment="Center"
+                           Opacity="0.3">
+                    <TextBlock.Effect>
+                        <BlurEffect Radius="10"/>
+                    </TextBlock.Effect>
+                </TextBlock>
+            </Grid>
+
+            <!-- Version badge -->
+            <Border Background="#1a1f4b" 
+                    CornerRadius="15" 
+                    Padding="15,5" 
+                    HorizontalAlignment="Center"
+                    Margin="0,0,0,40"
+                    BorderBrush="#00d4aa" 
+                    BorderThickness="1">
+                <TextBlock Text="PART 3 - FINAL SUBMISSION" 
+                           Foreground="#00d4aa" 
+                           FontSize="12" 
+                           FontWeight="Bold"/>
+            </Border>
+
+            <!-- ASCII Art Display -->
+            <Border Background="#0d1235" 
+                    CornerRadius="5" 
+                    Padding="15" 
+                    Margin="0,0,0,30"
+                    BorderBrush="#00d4aa" 
+                    BorderThickness="1"
+                    Opacity="0.9">
+                <TextBlock x:Name="SplashAsciiArt"
+                           FontFamily="Consolas"
+                           Foreground="#00d4aa"
+                           FontSize="10"
+                           TextWrapping="NoWrap"
+                           LineHeight="12"
+                           HorizontalAlignment="Center"/>
+            </Border>
+
+            <!-- Name Input Section -->
+            <StackPanel x:Name="InputSection" 
+                        Opacity="0" 
+                        Margin="0,20,0,0">
+
+                <TextBlock Text="ENTER YOUR NAME TO BEGIN" 
+                           Foreground="#8892b0" 
+                           FontSize="14" 
+                           FontWeight="SemiBold" 
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,15"/>
+
+                <Grid HorizontalAlignment="Center" Width="400">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Input box -->
+                    <Border Grid.Column="0" 
+                            Background="#1a1f4b" 
+                            CornerRadius="5" 
+                            BorderBrush="#00d4aa" 
+                            BorderThickness="2"
+                            Padding="15,10">
+                        <TextBox x:Name="txtSplashName" 
+                                 Background="Transparent" 
+                                 Foreground="#ffffff" 
+                                 BorderThickness="0" 
+                                 FontSize="16"
+                                 CaretBrush="#00d4aa"
+                                 VerticalContentAlignment="Center"
+                                 KeyDown="txtSplashName_KeyDown"/>
+                    </Border>
+
+                    <!-- Enter Button -->
+                    <Button x:Name="btnEnter" 
+                            Grid.Column="1" 
+                            Content="ENTER ->" 
+                            Margin="10,0,0,0"
+                            Width="100" 
+                            Height="45"
+                            Background="#00d4aa" 
+                            Foreground="#0a0e27" 
+                            FontWeight="Bold" 
+                            FontSize="14"
+                            BorderThickness="0"
+                            Cursor="Hand"
+                            Click="btnEnter_Click">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" 
+                                        CornerRadius="5">
+                                    <ContentPresenter HorizontalAlignment="Center" 
+                                                      VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </Grid>
+
+                <!-- Hint text -->
+                <TextBlock Text="Press ENTER or click the button to proceed" 
+                           Foreground="#4a5568" 
+                           FontSize="11" 
+                           HorizontalAlignment="Center"
+                           Margin="0,10,0,0"/>
+            </StackPanel>
+
+            <!-- Status bar at bottom -->
+            <TextBlock x:Name="txtStatus" 
+                       Text="Initializing secure connection..." 
+                       Foreground="#4a5568" 
+                       FontSize="11" 
+                       HorizontalAlignment="Center"
+                       Margin="0,40,0,0"
+                       FontFamily="Consolas"/>
+        </StackPanel>
+
+        <!-- Corner decorations -->
+        <Border HorizontalAlignment="Left" 
+                VerticalAlignment="Top" 
+                Margin="20" 
+                Opacity="0.5">
+            <TextBlock Text="ST10472621 | PROG6221" 
+                       Foreground="#00d4aa" 
+                       FontSize="10" 
+                       FontFamily="Consolas"/>
+        </Border>
+
+        <Border HorizontalAlignment="Right" 
+                VerticalAlignment="Bottom" 
+                Margin="20" 
+                Opacity="0.5">
+            <TextBlock Text="v3.2 FINAL" 
+                       Foreground="#00d4aa" 
+                       FontSize="10" 
+                       FontFamily="Consolas"/>
+        </Border>
+    </Grid>
+</Window>

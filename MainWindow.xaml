@@ -1,0 +1,608 @@
+﻿<Window x:Class="CybersecurityChatbot.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Cybersecurity Awareness Bot | Part 3" 
+        Height="750" 
+        Width="950"
+        Background="#0a0e27"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanResize">
+
+    <Window.Resources>
+        <!-- Send Button Style -->
+        <Style x:Key="SendButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#00d4aa"/>
+            <Setter Property="Foreground" Value="#0a0e27"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="20,10"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="5"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                            VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#00b894"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Input TextBox Style -->
+        <Style x:Key="InputTextBoxStyle" TargetType="TextBox">
+            <Setter Property="Background" Value="#1a1f4b"/>
+            <Setter Property="Foreground" Value="#ffffff"/>
+            <Setter Property="BorderBrush" Value="#00d4aa"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="CaretBrush" Value="#00d4aa"/>
+        </Style>
+
+        <!-- Action Button Style (for Task/Quiz buttons) -->
+        <Style x:Key="ActionButtonStyle" TargetType="Button">
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="5"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                            VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Opacity" Value="0.85"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Custom TabItem Style -->
+        <Style x:Key="CyberTabItem" TargetType="TabItem">
+            <Setter Property="Background" Value="#0d1235"/>
+            <Setter Property="Foreground" Value="#8892b0"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Padding" Value="15,8"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabItem">
+                        <Border Name="Border" 
+                                Background="{TemplateBinding Background}" 
+                                BorderBrush="#1a1f4b" 
+                                BorderThickness="0,0,1,0"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter ContentSource="Header" 
+                                            HorizontalAlignment="Center" 
+                                            VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#0a0e27"/>
+                                <Setter Property="Foreground" Value="#00d4aa"/>
+                                <Setter TargetName="Border" Property="BorderBrush" Value="#00d4aa"/>
+                                <Setter TargetName="Border" Property="BorderThickness" Value="0,0,0,3"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#1a1f4b"/>
+                                <Setter Property="Foreground" Value="#ffffff"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- DataGrid Style -->
+        <Style x:Key="CyberDataGrid" TargetType="DataGrid">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="#00d4aa"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="RowBackground" Value="#1a1f4b"/>
+            <Setter Property="AlternatingRowBackground" Value="#0f1535"/>
+            <Setter Property="Foreground" Value="#ffffff"/>
+            <Setter Property="GridLinesVisibility" Value="Horizontal"/>
+            <Setter Property="HorizontalGridLinesBrush" Value="#00d4aa"/>
+            <Setter Property="HeadersVisibility" Value="Column"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="SelectionMode" Value="Single"/>
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="CanUserAddRows" Value="False"/>
+            <Setter Property="CanUserDeleteRows" Value="False"/>
+        </Style>
+
+        <!-- DataGrid Column Header Style -->
+        <Style x:Key="CyberDataGridHeader" TargetType="DataGridColumnHeader">
+            <Setter Property="Background" Value="#0d1235"/>
+            <Setter Property="Foreground" Value="#00d4aa"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="BorderBrush" Value="#00d4aa"/>
+            <Setter Property="BorderThickness" Value="0,0,0,2"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <TabControl Background="Transparent" 
+                    BorderThickness="0"
+                    Margin="0">
+
+            <!-- TAB 1: CHAT -->
+            <TabItem Header="💬 Chat" Style="{StaticResource CyberTabItem}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Header -->
+                    <Border Grid.Row="0" 
+                            Background="#0d1235" 
+                            BorderBrush="#00d4aa" 
+                            BorderThickness="0,0,0,2" 
+                            Padding="15">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Grid.Column="0">
+                                <TextBlock x:Name="AsciiArtTextBlock"
+                                           FontFamily="Consolas"
+                                           Foreground="#00d4aa"
+                                           FontSize="11"
+                                           TextWrapping="NoWrap"
+                                           LineHeight="14"
+                                           Margin="0,0,0,10"/>
+
+                                <TextBlock Text="CYBERSECURITY AWARENESS ASSISTANT v3.0"
+                                           Foreground="#ffffff"
+                                           FontSize="16"
+                                           FontWeight="Bold"
+                                           FontFamily="Segoe UI"/>
+
+                                <TextBlock Text="Keeping South Africa Safe Online | Task Assistant + Quiz + NLP"
+                                           Foreground="#00d4aa"
+                                           FontSize="12"
+                                           Margin="0,2,0,0"/>
+                            </StackPanel>
+
+                            <Border Grid.Column="1" 
+                                    Background="#1a1f4b" 
+                                    CornerRadius="5" 
+                                    Padding="10,5" 
+                                    VerticalAlignment="Center">
+                                <StackPanel Orientation="Horizontal">
+                                    <Ellipse Width="10" 
+                                             Height="10" 
+                                             Fill="#00d4aa" 
+                                             Margin="0,0,8,0"/>
+                                    <TextBlock Text="Online" 
+                                               Foreground="#00d4aa" 
+                                               FontSize="12"/>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                    </Border>
+
+                    <!-- Chat Area -->
+                    <Border Grid.Row="1" 
+                            Background="#0a0e27" 
+                            Margin="10" 
+                            CornerRadius="5">
+                        <ScrollViewer x:Name="ChatScrollViewer"
+                                      VerticalScrollBarVisibility="Auto"
+                                      Margin="5">
+                            <StackPanel x:Name="ChatStackPanel" 
+                                        Margin="10"/>
+                        </ScrollViewer>
+                    </Border>
+
+                    <!-- Input Area -->
+                    <Border Grid.Row="2" 
+                            Background="#0d1235" 
+                            BorderBrush="#00d4aa" 
+                            BorderThickness="0,2,0,0" 
+                            Padding="15">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBox x:Name="UserInputTextBox"
+                                     Grid.Column="0"
+                                     Style="{StaticResource InputTextBoxStyle}"
+                                     VerticalContentAlignment="Center"
+                                     KeyDown="UserInputTextBox_KeyDown"
+                                     Text="Type your message here..."/>
+
+                            <Button x:Name="SendButton"
+                                    Grid.Column="1"
+                                    Style="{StaticResource SendButtonStyle}"
+                                    Content="SEND"
+                                    Margin="10,0,0,0"
+                                    Click="SendButton_Click"/>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </TabItem>
+
+            <!-- TAB 2: TASK ASSISTANT -->
+            <TabItem Header="🛡️ Task Assistant" Style="{StaticResource CyberTabItem}">
+                <Grid Margin="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Title -->
+                    <TextBlock Text="🛡️ Cybersecurity Task Assistant" 
+                               FontSize="26" 
+                               FontWeight="Bold" 
+                               Foreground="#00d4aa" 
+                               Margin="0,0,0,20"
+                               Grid.Row="0"/>
+
+                    <!-- Task Title -->
+                    <StackPanel Grid.Row="1" Margin="0,0,0,12">
+                        <TextBlock Text="Task Title" 
+                                   Foreground="#8892b0" 
+                                   FontWeight="SemiBold" 
+                                   Margin="0,0,0,5"
+                                   FontSize="12"/>
+                        <TextBox x:Name="txtTaskTitle" 
+                                 Height="35" 
+                                 Background="#1a1f4b" 
+                                 Foreground="#ffffff" 
+                                 BorderBrush="#00d4aa" 
+                                 BorderThickness="2"
+                                 Padding="10,5"
+                                 FontSize="14"
+                                 CaretBrush="#00d4aa"/>
+                    </StackPanel>
+
+                    <!-- Description -->
+                    <StackPanel Grid.Row="2" Margin="0,0,0,12">
+                        <TextBlock Text="Description" 
+                                   Foreground="#8892b0" 
+                                   FontWeight="SemiBold" 
+                                   Margin="0,0,0,5"
+                                   FontSize="12"/>
+                        <TextBox x:Name="txtTaskDescription" 
+                                 Height="70" 
+                                 Background="#1a1f4b" 
+                                 Foreground="#ffffff" 
+                                 BorderBrush="#00d4aa" 
+                                 BorderThickness="2"
+                                 Padding="10,5"
+                                 FontSize="14"
+                                 TextWrapping="Wrap"
+                                 AcceptsReturn="True"
+                                 CaretBrush="#00d4aa"/>
+                    </StackPanel>
+
+                    <!-- Reminder -->
+                    <StackPanel Grid.Row="3" Margin="0,0,0,15">
+                        <TextBlock Text="Reminder (optional)" 
+                                   Foreground="#8892b0" 
+                                   FontWeight="SemiBold" 
+                                   Margin="0,0,0,5"
+                                   FontSize="12"/>
+                        <TextBox x:Name="txtTaskReminder" 
+                                 Height="35" 
+                                 Background="#1a1f4b" 
+                                 Foreground="#ffffff" 
+                                 BorderBrush="#00d4aa" 
+                                 BorderThickness="2"
+                                 Padding="10,5"
+                                 FontSize="14"
+                                 CaretBrush="#00d4aa"
+                                 Text="e.g., Remind me in 3 days"/>
+                    </StackPanel>
+
+                    <!-- Task DataGrid -->
+                    <Border Grid.Row="4" 
+                            Background="#0d1235" 
+                            BorderBrush="#00d4aa" 
+                            BorderThickness="1" 
+                            CornerRadius="5"
+                            Margin="0,0,0,15">
+                        <DataGrid x:Name="dgTasks" 
+                                  Style="{StaticResource CyberDataGrid}"
+                                  ColumnHeaderStyle="{StaticResource CyberDataGridHeader}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ID" 
+                                                    Binding="{Binding Id}" 
+                                                    Width="50"/>
+                                <DataGridTextColumn Header="TITLE" 
+                                                    Binding="{Binding Title}" 
+                                                    Width="*"/>
+                                <DataGridTextColumn Header="DESCRIPTION" 
+                                                    Binding="{Binding Description}" 
+                                                    Width="2*"/>
+                                <DataGridTextColumn Header="REMINDER" 
+                                                    Binding="{Binding Reminder}" 
+                                                    Width="*"/>
+                                <DataGridCheckBoxColumn Header="✓" 
+                                                        Binding="{Binding IsComplete}" 
+                                                        Width="40"/>
+                                <DataGridTextColumn Header="CREATED" 
+                                                    Binding="{Binding CreatedAt}" 
+                                                    Width="130"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Border>
+
+                    <!-- Task Summary -->
+                    <TextBlock x:Name="txtTaskSummary" 
+                               Grid.Row="5"
+                               Text="No tasks yet. Add your first cybersecurity task above!"
+                               Foreground="#8892b0" 
+                               FontSize="12" 
+                               Margin="0,0,0,10"
+                               FontStyle="Italic"/>
+
+                    <!-- Buttons -->
+                    <StackPanel Grid.Row="6" 
+                                Orientation="Horizontal" 
+                                HorizontalAlignment="Center">
+                        <Button x:Name="btnAddTask" 
+                                Style="{StaticResource ActionButtonStyle}"
+                                Content="➕ Add Task" 
+                                Background="#00d4aa" 
+                                Foreground="#0a0e27"
+                                Click="btnAddTask_Click"/>
+                        <Button x:Name="btnMarkComplete" 
+                                Style="{StaticResource ActionButtonStyle}"
+                                Content="✅ Complete" 
+                                Background="#28a745" 
+                                Foreground="#ffffff"
+                                Click="btnMarkComplete_Click"/>
+                        <Button x:Name="btnDeleteTask" 
+                                Style="{StaticResource ActionButtonStyle}"
+                                Content="🗑️ Delete" 
+                                Background="#dc3545" 
+                                Foreground="#ffffff"
+                                Click="btnDeleteTask_Click"/>
+                        <Button x:Name="btnRefreshTasks" 
+                                Style="{StaticResource ActionButtonStyle}"
+                                Content="🔄 Refresh" 
+                                Background="#6c757d" 
+                                Foreground="#ffffff"
+                                Click="btnRefreshTasks_Click"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+            <!-- TAB 3: QUIZ -->
+            <TabItem Header="🎯 Quiz" Style="{StaticResource CyberTabItem}">
+                <Grid x:Name="QuizGrid">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Quiz Header -->
+                    <TextBlock Text="🎯 Cybersecurity Knowledge Quiz" 
+                               FontSize="26" 
+                               FontWeight="Bold" 
+                               Foreground="#00d4aa" 
+                               Margin="20,20,20,10"
+                               Grid.Row="0"/>
+
+                    <!-- Score Tracker -->
+                    <Border Grid.Row="1" 
+                            Background="#0d1235" 
+                            BorderBrush="#00d4aa" 
+                            BorderThickness="1" 
+                            CornerRadius="5"
+                            Margin="20,0,20,15"
+                            Padding="15,10">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Score: " 
+                                       Foreground="#8892b0" 
+                                       FontSize="14" 
+                                       FontWeight="SemiBold"/>
+                            <TextBlock x:Name="txtQuizScore" 
+                                       Text="0 / 0" 
+                                       Foreground="#00d4aa" 
+                                       FontSize="14" 
+                                       FontWeight="Bold"/>
+                            <TextBlock x:Name="txtQuizProgress" 
+                                       Text=" | Question 1 of 12" 
+                                       Foreground="#8892b0" 
+                                       FontSize="14" 
+                                       Margin="20,0,0,0"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Question Area -->
+                    <Border Grid.Row="2" 
+                            Background="#0d1235" 
+                            BorderBrush="#00d4aa" 
+                            BorderThickness="1" 
+                            CornerRadius="5"
+                            Margin="20,0,20,15"
+                            Padding="20">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <!-- Question Text -->
+                            <TextBlock x:Name="txtQuestionText" 
+                                       Text="Click 'Start Quiz' to begin your cybersecurity assessment!"
+                                       Foreground="#ffffff" 
+                                       FontSize="16" 
+                                       TextWrapping="Wrap"
+                                       Margin="0,0,0,20"
+                                       Grid.Row="0"/>
+
+                            <!-- Options -->
+                            <StackPanel x:Name="spQuizOptions" 
+                                        Grid.Row="1"
+                                        Margin="0,0,0,20">
+                                <!-- Options added dynamically in code -->
+                            </StackPanel>
+
+                            <!-- Feedback -->
+                            <Border x:Name="borderFeedback" 
+                                    Grid.Row="2" 
+                                    Background="#1a1f4b" 
+                                    CornerRadius="5" 
+                                    Padding="15"
+                                    Visibility="Collapsed">
+                                <TextBlock x:Name="txtFeedback" 
+                                           Text="" 
+                                           Foreground="#00d4aa" 
+                                           FontSize="14" 
+                                           TextWrapping="Wrap"/>
+                            </Border>
+                        </Grid>
+                    </Border>
+
+                    <!-- Quiz Buttons -->
+                    <StackPanel Grid.Row="3" 
+                                Orientation="Horizontal" 
+                                HorizontalAlignment="Center"
+                                Margin="0,0,0,20">
+                        <Button x:Name="btnStartQuiz" 
+                                Style="{StaticResource ActionButtonStyle}"
+                                Content="▶ Start Quiz" 
+                                Background="#00d4aa" 
+                                Foreground="#0a0e27"
+                                Width="140"
+                                Click="btnStartQuiz_Click"/>
+                        <Button x:Name="btnSubmitAnswer" 
+                                Style="{StaticResource ActionButtonStyle}"
+                                Content="✓ Submit" 
+                                Background="#28a745" 
+                                Foreground="#ffffff"
+                                Width="140"
+                                Click="btnSubmitAnswer_Click"
+                                Visibility="Collapsed"/>
+                        <Button x:Name="btnNextQuestion" 
+                                Style="{StaticResource ActionButtonStyle}"
+                                Content="→ Next" 
+                                Background="#00d4aa" 
+                                Foreground="#0a0e27"
+                                Width="140"
+                                Click="btnNextQuestion_Click"
+                                Visibility="Collapsed"/>
+                        <Button x:Name="btnRestartQuiz" 
+                                Style="{StaticResource ActionButtonStyle}"
+                                Content="↻ Restart" 
+                                Background="#6c757d" 
+                                Foreground="#ffffff"
+                                Width="140"
+                                Click="btnRestartQuiz_Click"
+                                Visibility="Collapsed"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+            <!-- TAB 4: ACTIVITY LOG -->
+            <TabItem Header="📊 Activity Log" Style="{StaticResource CyberTabItem}">
+                <Grid Margin="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="📊 Activity Log" 
+                               FontSize="26" 
+                               FontWeight="Bold" 
+                               Foreground="#00d4aa" 
+                               Margin="0,0,0,15"
+                               Grid.Row="0"/>
+
+                    <TextBlock Text="Recent actions performed by the chatbot:" 
+                               Foreground="#8892b0" 
+                               FontSize="12" 
+                               Margin="0,0,0,10"
+                               Grid.Row="1"/>
+
+                    <Border Grid.Row="2" 
+                            Background="#0d1235" 
+                            BorderBrush="#00d4aa" 
+                            BorderThickness="1" 
+                            CornerRadius="5"
+                            Margin="0,0,0,15">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <TextBlock x:Name="txtActivityLog" 
+                                       Text="No activity recorded yet. Interact with the chatbot to see actions here!"
+                                       Foreground="#ffffff" 
+                                       FontSize="13" 
+                                       TextWrapping="Wrap"
+                                       Padding="15"
+                                       LineHeight="22"/>
+                        </ScrollViewer>
+                    </Border>
+
+                    <StackPanel Grid.Row="3" 
+                                Orientation="Horizontal" 
+                                HorizontalAlignment="Center">
+                        <Button x:Name="btnShowRecentLog" 
+                                Style="{StaticResource ActionButtonStyle}"
+                                Content="📋 Show Recent" 
+                                Background="#00d4aa" 
+                                Foreground="#0a0e27"
+                                Width="140"
+                                Click="btnShowRecentLog_Click"/>
+                        <Button x:Name="btnShowFullLog" 
+                                Style="{StaticResource ActionButtonStyle}"
+                                Content="📚 Show All" 
+                                Background="#6c757d" 
+                                Foreground="#ffffff"
+                                Width="140"
+                                Click="btnShowFullLog_Click"/>
+                        <Button x:Name="btnClearLog" 
+                                Style="{StaticResource ActionButtonStyle}"
+                                Content="🗑️ Clear" 
+                                Background="#dc3545" 
+                                Foreground="#ffffff"
+                                Width="140"
+                                Click="btnClearLog_Click"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+    </Grid>
+</Window>
