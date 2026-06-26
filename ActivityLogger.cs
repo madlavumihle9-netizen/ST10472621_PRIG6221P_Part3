@@ -62,6 +62,7 @@ namespace MizzBox
             _log.Clear();
         }
 
+        
         /// <summary>
         /// Format a list with numbers.
         /// </summary>
