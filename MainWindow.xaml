@@ -11,6 +11,7 @@
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanResize">
 
+
     <Window.Resources>
         <!-- Send Button Style -->
         <Style x:Key="SendButtonStyle" TargetType="Button">
