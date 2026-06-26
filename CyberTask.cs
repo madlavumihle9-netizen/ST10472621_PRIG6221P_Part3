@@ -1,5 +1,6 @@
 ﻿using System;
 
+
 namespace MizzBox
 {
     public class CyberTask
