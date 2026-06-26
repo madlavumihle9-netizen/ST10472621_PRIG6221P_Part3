@@ -102,6 +102,7 @@ namespace CybersecurityChatbot
                 return;
             }
 
+
             UserName = name;
             txtStatus.Text = ">>> Welcome, " + name + ". Access granted.";
             txtStatus.Foreground = System.Windows.Media.Brushes.Green;
