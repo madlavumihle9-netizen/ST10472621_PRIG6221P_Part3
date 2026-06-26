@@ -2,7 +2,7 @@
 
 # Cybersecurity Awareness Chatbot
 
-**Student:** [Your Name]  
+**Student:** [Mihle Madlavu]  
 **Student Number:** ST10472621  
 **Module:** PROG6221 — Programming 2A  
 **Institution:** The Independent Institute of Education (IIE)
